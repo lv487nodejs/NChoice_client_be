@@ -24,17 +24,19 @@ You're encouraged to contribute to our project if you've found any issues or mis
 Before sending any pull request, please discuss requirements/changes to be implemented using an existing issue or by creating a new one. All pull requests should be done into the development branch.
 
 # 4. How to start the project locally.
-4.1. Clone or download the project from **https://github.com/lv487nodejs/NChoice_client.git**
+4.1. Clone or download the project from **https://github.com/lv487nodejs/NChoice_client_fe.git** and **https://github.com/lv487nodejs/NChoice_client_be.git** 
 
 4.2. Before running the project, make sure that you downloaded all dependencies.
 
-4.2.1. Run "npm install" at NChoice_client folder to download dependencies for backend.
+4.2.1. Run "npm install" at NChoice_client_be folder to download dependencies for backend.
 
-4.2.2. Run "npm install" at NChoice_client/client folder to download dependencies for client page.
+4.2.2. Run "npm install" at NChoice_client/client_fe folder to download dependencies for frontend.
 
-4.3. Run "npm run dev" at NChoice_client folder to run client and backend aplication at http://localhost:3000/.
+4.3. Run "npm run start" at NChoice_client_fe folder to run aplication at http://localhost:3000/.
 
-4.4. Run "npm run cypress" at fn/fn/admin folder to run end-to-end tests.
+4.4. Run "npm run start" at NChoice_client_be folder to run server.
+
+4.5. Run "npm run cypress" at NChoice_admin/admin folder to run end-to-end tests.
 
 # 5. Project Deploy
 

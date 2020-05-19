@@ -29,7 +29,7 @@ const getUser = asyncHandler(async (req, res, next) => {
     user.tokens = [];
     user.tokens.push(refreshToken);
     await user.save()
-
+    user.password = '';
     res.status(200).send({ accessToken, refreshToken, user });
 });
 
@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
 
     const { firstName, lastName, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const checkedUser =await Users.findOne({email})    
+    const checkedUser = await Users.findOne({ email })
     if (checkedUser) {
         return next(new ErrorResponse('user already exist', 403))
     }
@@ -62,8 +62,8 @@ const registerUser = asyncHandler(async (req, res, next) => {
     user.emailToken = emailToken;
     user.tokens = [];
     user.tokens.push(refreshToken);
-    sendEmail(emailMessage, async() => {
-      await  user.save();
+    sendEmail(emailMessage, async () => {
+        await user.save();
         return res.status(200).send({ message: 'User saved', user, accessToken, refreshToken });
     });
 })
