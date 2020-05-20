@@ -55,6 +55,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     const url = `${process.env.CONFIRM_URL}${emailToken}`;
 
     const emailMessage = {
+        from:  `user-alias <exzzemple.sender@outlook.com>`,
         to: user.email,
         subject: 'Confirm Email',
         html: `Please click this link to confirm your email: <a href="${url}">${url}</a>`,

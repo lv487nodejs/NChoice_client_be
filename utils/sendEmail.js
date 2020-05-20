@@ -1,24 +1,29 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
+const smtpPool = require('nodemailer/lib/smtp-pool');
 const sendEmail = async (message,callback) => {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_PASS,
-        },
+    const transporter = nodemailer.createTransport(new smtpPool({
+        host: "smtp-mail.outlook.com", 
+        secureConnection: false, 
         tls: {
-            rejectUnauthorized: false
-        }
-    });
-    await transporter.sendMail(message, (err, info) => {
+           ciphers:'SSLv3'
+        },
+        auth: {
+            user: "exzzemple.sender@outlook.com",
+            pass: `i"+Mv!;8vV<PN9t`,
+        },
+    }));
+
+    transporter.sendMail(message, (err, info) => {
         if (err) {
-            return err;
+            return err; 
         }
+    
         callback()
         transporter.close();
     });
+
 }
 
 module.exports = sendEmail;
