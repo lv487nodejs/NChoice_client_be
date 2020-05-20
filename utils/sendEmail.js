@@ -16,14 +16,10 @@ const sendEmail = async (message,callback) => {
     }));
 
     transporter.sendMail(message, (err, info) => {
-        console.log(message)
-        
         if (err) {
-            console.log('Err sent: ' + JSON.stringify(err));
             return err; 
         }
-        
-        console.log('Email sent: ' + info.response);
+    
         callback()
         transporter.close();
     });
