@@ -8,6 +8,9 @@ const sendEmail = async (message,callback) => {
             user: process.env.GMAIL_USER,
             pass: process.env.GMAIL_PASS,
         },
+        tls: {
+            rejectUnauthorized: false
+        }
     });
     await transporter.sendMail(message, (err, info) => {
         if (err) {
