@@ -29,8 +29,7 @@ const UserModel = new Schema({
         default: false,
     },
     emailToken: {
-        type: String,
-        required: true,
+        type: String
     },
     avatar: {
         type: String,
