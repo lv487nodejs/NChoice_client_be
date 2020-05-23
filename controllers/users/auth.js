@@ -125,7 +125,6 @@ const googleAuth = asyncHandler( async (req, res, next) => {
     const { email } = req.user
     const user = await Users.findOne({ email });
     const userName = { name: user.email }
-    console.log(req.user)
     const accessToken = generateAccessToken(userName);
     const refreshToken = generateRefreshToken(userName);
     user.tokens = [];
@@ -140,7 +139,6 @@ const facebookAuth = asyncHandler( async (req, res, next) => {
     const { email } = req.user
     const user = await Users.findOne({ email });
     const userName = { name: user.email }
-    console.log(req.user)
     const accessToken = generateAccessToken(userName);
     const refreshToken = generateRefreshToken(userName);
     user.tokens = [];

@@ -11,13 +11,11 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET
 }, async (accessToken, refreshToken, profile, done) =>{
     try{
-        // check whether the user exists
+
         const existingUser = await User.findOne({email: profile.emails[0].value})
         if (existingUser) {
             return done(null, existingUser);
         }
-
-        //If new acc
 
         const newUser = new User({
             password: profile.id,
@@ -45,7 +43,6 @@ passport.use('facebookToken', new FacebookTokenStrategy({
                 return done(null, existingUser);
             }
 
-        //If new acc
         const newUser = new User({
             email: `${ searchBy }`,
             confirmedEmail: true,
