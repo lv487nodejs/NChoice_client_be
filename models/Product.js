@@ -5,50 +5,50 @@ const { Schema } = mongoose;
 const PropetriesSchema = require('./ProductPropetries');
 
 const ProductSchema = new Schema({
-  catalog: { 
-    type: Schema.Types.ObjectId, 
-    ref: 'catalog' 
+  catalog: {
+    type: Schema.Types.ObjectId,
+    ref: 'catalog'
   },
-  category: { 
-    type: Schema.Types.ObjectId, 
-    ref: 'category' 
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'category'
   },
-  brand: { 
-    type: Schema.Types.ObjectId, 
-    ref: 'brand' 
+  brand: {
+    type: Schema.Types.ObjectId,
+    ref: 'brand'
   },
-  title: { 
+  title: {
     type: String,
-    required: true 
+    required: true
   },
   description: {
-    type: String, 
-    required: true 
+    type: String,
+    required: true
   },
-  color: { 
-    type: Schema.Types.ObjectId, 
-    ref: 'color' 
+  color: {
+    type: Schema.Types.ObjectId,
+    ref: 'color'
   },
   material: {
     type: String,
     enum: ['cotton', 'jute', 'silk', 'ramie', 'wool', 'recycled']
   },
-  mrsp: { 
-    type: Number, 
-    min: 0 
+  mrsp: {
+    type: Number,
+    min: 0
   },
-  price: { 
-    type: Number, 
-    required: true, 
-    min: 0 
+  price: {
+    type: Number,
+    required: true,
+    min: 0
   },
   rate: Number,
-  avgRate:Number,
+  "ratings-count": Number,
   images: [String],
   propetries: [PropetriesSchema],
-  modified: { 
-    type: Date, 
-    default: Date.now 
+  modified: {
+    type: Date,
+    default: Date.now
   },
 });
 
