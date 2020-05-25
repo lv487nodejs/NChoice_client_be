@@ -1,65 +1,66 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const PropetriesSchema = require('./ProductPropetries');
+const PropetriesSchema = require("./ProductPropetries");
 
 const ProductSchema = new Schema({
   catalog: {
     type: Schema.Types.ObjectId,
-    ref: 'catalog'
+    ref: "catalog",
   },
   category: {
     type: Schema.Types.ObjectId,
-    ref: 'category'
+    ref: "category",
   },
   brand: {
     type: Schema.Types.ObjectId,
-    ref: 'brand'
+    ref: "brand",
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   color: {
     type: Schema.Types.ObjectId,
-    ref: 'color'
+    ref: "color",
   },
   material: {
     type: String,
-    enum: ['cotton', 'jute', 'silk', 'ramie', 'wool', 'recycled']
+    enum: ["cotton", "jute", "silk", "ramie", "wool", "recycled"],
   },
   mrsp: {
     type: Number,
-    min: 0
+    min: 0,
   },
   price: {
     type: Number,
     required: true,
-    min: 0
+    min: 0,
   },
   rate: Number,
   rateCount: {
     type: Number,
-    default: 1
+    default: 1,
   },
+  usersVoted: [String],
   images: [String],
   propetries: [PropetriesSchema],
   modified: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
 });
 
 ProductSchema.index(
-  { "title": "text", "description": "text" },
-  { "weights": { "title": 5 } }
+  { title: "text", description: "text" },
+  { weights: { title: 5 } }
 );
 
-const Products = mongoose.model('product', ProductSchema);
+const Products = mongoose.model("product", ProductSchema);
 
 module.exports = Products;
