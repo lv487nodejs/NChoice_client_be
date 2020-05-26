@@ -63,7 +63,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     user.emailToken = emailToken;
     user.tokens = [];
     user.tokens.push(refreshToken);
-    sendEmail(emailMessage, async () => {
+    await sendEmail(emailMessage, async () => {
         await user.save();
         return res.status(200).send({ message: 'User saved', user, accessToken, refreshToken });
     });

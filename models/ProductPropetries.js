@@ -17,4 +17,10 @@ const PropetriesSchema = new Schema({
     },
 });
 
+PropetriesSchema.pre('save', function(next) {
+    this.sku = this.sku + '-' + this._id
+    this.sku = this.sku.slice(0,-20).toUpperCase()
+    next();
+  });
+
 module.exports = PropetriesSchema;
