@@ -18,10 +18,9 @@ const sendEmail = async (message,callback) => {
     }));
 
     transporter.sendMail(message, (err, info) => {
-        if (err) {
+        if (err) {  
             return err; 
         }
-    
         callback()
         transporter.close();
     });

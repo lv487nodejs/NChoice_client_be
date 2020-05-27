@@ -137,6 +137,7 @@ const createProduct = asyncHandler(async (req, res) => {
         propetries,
     });
 
+    
     const newProduct = await product.save();
     res.status(201).send(newProduct);
 });
