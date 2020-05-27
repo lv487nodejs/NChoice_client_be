@@ -19,7 +19,7 @@ const PropetriesSchema = new Schema({
 
 PropetriesSchema.pre('save', function(next) {
     this.sku = this.sku + '-' + this._id
-    this.sku = this.sku.slice(0,-20).toUpperCase()
+    this.sku = this.sku.slice(0,-20).toUpperCase() // Cut the id
     next();
   });
 
