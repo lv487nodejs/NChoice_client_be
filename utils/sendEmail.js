@@ -4,10 +4,12 @@ require('dotenv').config();
 const smtpPool = require('nodemailer/lib/smtp-pool');
 const sendEmail = async (message,callback) => {
     const transporter = nodemailer.createTransport(new smtpPool({
-        host: "smtp-mail.outlook.com", 
-        secureConnection: false, 
+        host: "smtp-mail.outlook.com",
+        port: 25,
+        secure : false,
         tls: {
-           ciphers:'SSLv3'
+            rejectUnauthorized: false,
+            ciphers:'SSLv3'
         },
         auth: {
             user: "exzzemple.sender@outlook.com",
