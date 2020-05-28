@@ -20,7 +20,7 @@ router.get('/', auth, authorize('admin'), getUsers);
 router.get('/:id', auth, authorize('admin', 'user'), getUser);
 
 // update user
-router.put('/:id', auth, authorize('user'), updateUser);
+router.put('/:id', auth, authorize('admin', 'user'), updateUser);
 
 // update cart
 router.put('/cart/:id', auth, authorize('user'), updateCart);
