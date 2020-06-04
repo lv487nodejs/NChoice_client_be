@@ -32,8 +32,8 @@ stages:
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: 'nchoiceclientbe'
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        containerRegistry: 'c6b58682-f735-405b-a2a2-bd0fc6e322e9'
         tags: |
           $(tag)
