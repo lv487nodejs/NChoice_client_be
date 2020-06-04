@@ -29,7 +29,7 @@ const getUser = asyncHandler(async (req, res, next) => {
     user.tokens = [];
     user.tokens.push(refreshToken);
     await user.save()
-    user.password = '';
+    user.password = '';    
     res.status(200).send({ accessToken, refreshToken, user });
 });
 
@@ -65,6 +65,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     user.tokens.push(refreshToken);
     sendEmail(emailMessage, async () => {
         await user.save();
+        user.password='';
         return res.status(200).send({ message: 'User saved', user, accessToken, refreshToken });
     });
 })
@@ -86,6 +87,8 @@ const updateUserRole = asyncHandler(async (req, res, next) => {
 const updateUser = asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const userToUpdate = req.body.user;
+    console.log(userToUpdate);
+    
     const { password } = userToUpdate
     const hashedPassword = await bcrypt.hash(password, 10);
     userToUpdate.password = hashedPassword
@@ -96,6 +99,7 @@ const updateUser = asyncHandler(async (req, res, next) => {
         );
     }
     await user.save();
+    user.password=''
     res.status(200).send({ msg: 'user data successfully changed', user });
 });
 
@@ -112,6 +116,7 @@ const updateCart = asyncHandler(async (req, res, next) => {
     userToUpdate.cart = cart;
 
     await userToUpdate.save();
+    userToUpdate.password=''
     res.status(200).send({ msg: 'user data successfully changed', userToUpdate });
 });
 
